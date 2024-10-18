@@ -29,7 +29,11 @@
         <h1>Feedback form</h1>
     <form>
         <div class="control">
-          <label>Full name <span class="required">*</span></label><input id="name" name="name" type="text" />
+          <!--Added for attribute to associate the label with the input field-->
+          <label for="name">Full name <span class="required">*</span></label>
+          <input id="name" name="name" type="text" required aria-required="true" />
+          <!--I added inline instruction for required field-->
+          <small>(This field is required)</small>
         </div>
         <div class="control">
           <label>Biography</label><textarea id="biography" name="biography" type="text"></textarea>
