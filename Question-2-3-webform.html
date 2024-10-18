@@ -28,6 +28,7 @@
     <body>
         <h1>Feedback form</h1>
     <form>
+      <fieldset>
         <div class="control">
           <!--Added for attribute to associate the label with the input field-->
           <label for="name">Full name <span class="required">*</span></label>
@@ -41,6 +42,7 @@
           <!--I added describe for screen reader to help -->
           <span id="biographyHelp" class="help-text">Include examples on your skills in JavaScript.</span>
         </div>
+      </fieldset>
         <!--I added field set for grouping for better accesibility-->
         <fieldset>
           <!--Added legend for groping control-->
@@ -53,7 +55,9 @@
           </div>
         </fieldset>
         <div class="control">
-          <input id="accept_agbs" name="accept_agbs" type="checkbox" value="1" /><label>I accept the terms and conditions</label>
+          <input id="accept_agbs" name="accept_agbs" type="checkbox" value="1" />
+            <!-- Added for attribute to associate label with checkbox -->
+          <label for="acceptterm&conditions">I accept the terms and conditions</label>
         </div>
         <div class="control">
           <input name="validate" type="hidden" value="1" /><input type="submit" value="Register" />
