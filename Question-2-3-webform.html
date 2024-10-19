@@ -110,7 +110,7 @@
       $error = $('<a href="#' + $referencedElement.attr('id') + '">' + message + '</a>'); // Fixed line
       $error.click(function (e) {
           // Ensure focus works for screen readers and keyboard users
-          $referencedElement.focus();
+          $referencedElement.focus(); 
           return e.preventDefault(); // Prevent default link behavior
       });
 
