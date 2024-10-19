@@ -31,14 +31,16 @@
       <fieldset>
         <div class="control">
           <!--Added for attribute to associate the label with the input field-->
-          <label for="name">Full name <span class="required">*</span></label>
-          <input id="name" name="name" type="text" required aria-required="true" />
+          <label for="name">Full name <span class="required" aria-hidden="true">*</span></label>
+          <input id="name" name="name" type="text" aria-required="true" aria-describedby="nameError"/>
+          <span id="nameError" class="error" aria-live="assertive"></span> 
           <!--I added inline instruction for required field-->
           <small>(This field is required)</small> 
         </div>
         <div class="control">
           <!--Added for attribute to associate the label with the input field-->
-          <label for="biography">Biography</label><textarea id="biography" name="biography" type="text"></textarea>
+          <label for="biography">Biography </label>
+          <textarea id="biography" name="biography" type="text"></textarea>
           <!--I added describe for screen reader to help -->
           <span id="biographyHelp" class="help-text">Include examples on your skills in JavaScript.</span>
         </div>
@@ -48,16 +50,17 @@
           <!--Added legend for groping control-->
           <legend>Gender</legend>
           <div class="control">
-            <input id="gender_male" name="gender" type="radio" value="male" /><label>Male</label>
+            <input id="gender_male" name="gender" type="radio" value="male" aria-required="true" aria-describedby="genderError"/><label>Male</label>
           </div>
           <div class="control">
-            <input id="gender_female" name="gender" type="radio" value="female" /><label>Female</label>
+            <input id="gender_female" name="gender" type="radio" value="female" aria-required="true" aria-describedby="genderError"/><label>Female</label>
+           
           </div>
         </fieldset>
         <div class="control">
           <input id="accept_agbs" name="accept_agbs" type="checkbox" value="1" />
             <!-- Added for attribute to associate label with checkbox -->
-          <label for="acceptterm&conditions">I accept the terms and conditions</label>
+          <label for="acceptterm&conditions">I accept the terms and conditions </label>
         </div>
         <div class="control">
           <input name="validate" type="hidden" value="1" /><input type="submit" value="Register" />
@@ -104,12 +107,13 @@
               $referencedElement = $input;
             }
       // R.G. hint: fix next line ;)
-            $error = $('<a>' + message + '</a>');
-            $error.click(function (e) {
-              // If we rely on the link's href pointing to the input's ID, it doesn't trigger forms mode in screen readers
-              $referencedElement.focus();
-              return e.preventDefault();
-            });
+      $error = $('<a href="#' + $referencedElement.attr('id') + '">' + message + '</a>'); // Fixed line
+      $error.click(function (e) {
+          // Ensure focus works for screen readers and keyboard users
+          $referencedElement.focus();
+          return e.preventDefault(); // Prevent default link behavior
+      });
+
             $elementToDescribe.attr('aria-describedby', input + '_description');
             $errorContainer.append('<li>').find('li:last').append($error);
       
